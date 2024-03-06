@@ -32,6 +32,14 @@ export default function SearcBox() {
 
 
     return (
-        <Spline scene="https://prod.spline.design/WQ5KTeJT-5h28609/scene.splinecode" />
+        <div className="flex justify-around items-center">
+            <div className="ml-10">
+                <h1 className="text-4xl font-bold">Welcome to Movie-DB.</h1>
+                <h2 className="text-2xl">Your 2nd best source for Movies, TV Shows and People...</h2>
+            </div>
+            <div className="w-2/3">
+                <Spline scene="https://prod.spline.design/WQ5KTeJT-5h28609/scene.splinecode" />
+            </div>
+        </div>
     )
 }

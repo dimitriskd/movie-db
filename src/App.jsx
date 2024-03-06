@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div>
       <Navbar />
-      <main className="mx-auto 2xl:w-9/12 ">
+      <main className="container py-3 mx-auto md:flex justify-between">
         <SearcBox />
       </main>
     </div>
