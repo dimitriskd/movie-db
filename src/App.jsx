@@ -1,12 +1,14 @@
-import { api_key } from "./API/tmdb";
+import Navbar from "./Components/Navbar";
+import SearcBox from "./Components/SearchBox";
+import "./styles/App.css"
 
 export default function App() {
-  function getKEY(){
-    const key = api_key;
-    console.log(key); 
-  }
-  
   return (
-    <button onClick={getKEY}>GET</button>
+    <div>
+      <Navbar />
+      <main className="mx-auto">
+        <SearcBox />
+      </main>
+    </div>
   )
 }

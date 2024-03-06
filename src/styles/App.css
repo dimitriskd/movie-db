@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,html{
+    font-family: "Karla", sans-serif;
+    margin: 0;
+}
+
+
+.parallax {
+    background-image: url("../assets/banner-bg.jpeg");
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.overlay {
+    background-color: rgba(37, 42, 208 , 0.5);
+}
+
+.search-box {
+    display: flex;
+    width: 80%;
+}
+
+.search {
+    border-radius: 10px 0 0 10px;
+}
+
+.search--button{
+    border-radius: 0 10px 10px 0;
+}
