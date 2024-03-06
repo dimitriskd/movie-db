@@ -14,7 +14,7 @@ export default function SearcBox() {
         } catch (error) {
             console.log(error)
         };
-    }
+    };
 
     function handleChange(e){
         const query = e.target.value;
@@ -22,7 +22,7 @@ export default function SearcBox() {
         setTimeout(async () => {
 
         },1000)
-    }
+    };
 
     return (
         <section className="parallax bg-blend-multiply">
