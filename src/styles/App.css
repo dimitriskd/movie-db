@@ -21,11 +21,6 @@ body,html{
     background-color: rgba(37, 42, 208 , 0.5);
 }
 
-.search-box {
-    display: flex;
-    width: 80%;
-}
-
 .search {
     border-radius: 10px 0 0 10px;
 }
