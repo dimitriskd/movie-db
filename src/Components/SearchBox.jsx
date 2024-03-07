@@ -17,8 +17,8 @@ export default function SearcBox() {
             console.log(data);
         } catch (error) {
             console.log(error)
-        };
-    };
+        }
+    }
 
     function handleChange(e){
         const query = e.target.value;
@@ -26,7 +26,7 @@ export default function SearcBox() {
         setTimeout(async () => {
 
         },1000)
-    };
+    }
 
     
 
