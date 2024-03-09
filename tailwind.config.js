@@ -46,6 +46,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
   darkMode: "class",
 };

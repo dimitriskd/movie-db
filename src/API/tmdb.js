@@ -15,5 +15,14 @@ export const APIContainer = {
         } catch (error) {
             console.error(error);
         }
+    },
+    async nowPlaying(){
+        try {
+            const response = await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1',this.config);
+            const movies = response.data.results;
+            return movies;
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
