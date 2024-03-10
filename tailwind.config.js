@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "seashell": {
+        seashell: {
           50: "#f8f8f8",
           100: "#f1f1f1",
           200: "#dcdcdc",
@@ -42,10 +42,38 @@ export default {
           800: "#3c4797",
           900: "#374178",
           950: "#1b1f3b",
-        }
+        },
       },
     },
   },
-  plugins: [],
-  darkMode: "class",
+  plugins: [require("daisyui")],
+  darkMode: ['selector', '[data-theme="dark"]'],
+  daisyui: {
+    themes: [
+      {
+        dark: {
+          "primary": "#252ad0",
+          "secondary": "#5767d4",
+          "accent": "#0084ff",
+          "neutral": "#1e1c21",
+          "base-100": "#2b2b2b",
+          "info": "#0084cb",
+          "success": "#00c17a",
+          "warning": "#f47200",
+          "error": "#ed494e",
+        },
+        light: {
+          "primary": "#a991f7",
+          "secondary": "#f6d860",
+          "accent": "#37cdbe",
+          "neutral": "#3d4451",
+          "base-100": "#ffffff",
+          "info": "#0084cb",
+          "success": "#00c17a",
+          "warning": "#f47200",
+          "error": "#ed494e",
+        },
+      },
+    ],
+  },
 };
