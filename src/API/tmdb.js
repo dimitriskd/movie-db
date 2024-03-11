@@ -6,14 +6,15 @@ export const APIContainer = {
         headers: {
             accept: 'application/json',
             Authorization: `Bearer ${api_key}`
-        }
+        },
     },
-    async searchBox(query){
+    async fetch_popular (){
         try {
-            const response = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, this.config);
+            const response = await axios.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1',this.config);
             return response;
         } catch (error) {
-            console.error(error);
+            throw(error);
         }
-    }
+    },
+
 }

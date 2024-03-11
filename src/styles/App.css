@@ -17,8 +17,3 @@ html {
 [data-theme="dark"] {
   --my-color: #000;
 }
-
-.navbar {
-  box-shadow: #fff;
-}
-

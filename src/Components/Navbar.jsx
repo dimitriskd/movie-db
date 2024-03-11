@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { themeChange } from "theme-change";
 import logo from "../assets/logo/logo-line/svg/logo-no-background.svg";
 import logo_dark from "../assets/logo/logo-dark/svg/logo-no-background.svg";
-import { themeChange } from "theme-change";
 themeChange();
 
 export default function Navbar() {
@@ -11,6 +11,23 @@ export default function Navbar() {
   const handleThemeChange = () => {
     if (buttonRef.current) buttonRef.current.click();
   };
+
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    // Update the isSmallScreen state when the window is resized
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    // Attach the event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="navbar bg-base-100 container py-3 mx-auto md:flex">
@@ -23,7 +40,7 @@ export default function Navbar() {
       >
         Theme
       </button>
-      <div className="navbar-start">
+      <div className="navbar-start flex">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <span className="material-symbols-outlined">menu</span>
@@ -43,56 +60,49 @@ export default function Navbar() {
             </li>
             <li>
               <label className="flex cursor-pointer gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="5" />
-                  <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-                </svg>
+                Theme Mode
                 <input
                   type="checkbox"
                   value="synthwave"
                   className="toggle theme-controller"
                   onChange={handleThemeChange}
                 />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
               </label>
             </li>
           </ul>
         </div>
+        <div className="md:hidden">
+          <a href="">
+            <img
+              className="hidden dark:block h-6 md:h-8"
+              src={logo_dark}
+              alt="movie-db logo"
+            />
+            <img className="block dark:hidden h-8" src={logo} alt="" />
+          </a>
+        </div>
       </div>
-      <div className="navbar-center">
-        <img className="hidden dark:block h-8" src={logo_dark} alt="movie-db logo" />
-        <img className="block dark:hidden h-8" src={logo} alt="" />
+      <div className="hidden md:block navbar-center">
+        <a href="">
+          <img
+            className="hidden dark:block h-6 md:h-8"
+            src={logo_dark}
+            alt="movie-db logo"
+          />
+          <img className="block dark:hidden h-8" src={logo} alt="" />
+        </a>
       </div>
       <div className="navbar-end">
         {/* Search Bar Desktop */}
-        <div className="mr-3 hidden md:flex items-center border border-seashell-700 rounded-full p-2">
-          <span className="material-symbols-outlined">search</span>
+        <div className="mr-3 hidden md:flex items-center border border-seashell-700 rounded-full">
+          <button className="btn btn-ghost btn-circle">
+            <span className="material-symbols-outlined">search</span>
+          </button>
           <input
             type="text"
             placeholder="Search..."
             className="ml-1 py-1 focus:outline-none outline-none focus:border-none bg-transparent"
+            disabled={isSmallScreen}
           />
         </div>
         {/* Search Bar Mobile*/}
@@ -108,12 +118,12 @@ export default function Navbar() {
               mobileSearch
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-full"
-            } transition-all ease-in-out duration-300 flex absolute top-0 left-0 w-full justify-between bg-slate-600 z-50 shadow-lg`}
+            } transition-all ease-in-out duration-300 flex absolute top-0 left-0 w-full justify-between bg-seashell-900 z-50 shadow-lg`}
           >
             <input
               type="text"
               placeholder="Search..."
-              className="w-full py-5 indent-3 text-xl bg-transparent focus:outline-none"
+              className="w-full py-6 indent-3 text-xl bg-transparent focus:outline-none"
             />
             <button
               onClick={() => setMobileSearch(!mobileSearch)}
