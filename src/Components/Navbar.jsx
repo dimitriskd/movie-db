@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { themeChange } from "theme-change";
 import logo from "../assets/logo/logo-line/svg/logo-no-background.svg";
 import logo_dark from "../assets/logo/logo-dark/svg/logo-no-background.svg";
-themeChange();
+import { themeChange } from 'theme-change'
 
 export default function Navbar() {
   const [mobileSearch, setMobileSearch] = useState(false);
@@ -15,7 +14,8 @@ export default function Navbar() {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    // Update the isSmallScreen state when the window is resized
+    themeChange(false);
+    
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 768);
     };

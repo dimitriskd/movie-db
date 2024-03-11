@@ -18,15 +18,15 @@ export default function Header(props) {
 
   return (
     <section style={style} className="mx-auto md:flex justify-between ">
-      <div className="w-full py-5 bg-persian-blue-700 bg-opacity-40">
+      <div className="w-full py-5 bg-persian-blue-700 bg-opacity-50">
         <div className="container mx-auto px-10 py-10 md:w-2/3">
           <div className="py-10">
-            <h1 className="font-bold text-4xl">Welcome to Movie-DB</h1>
-            <p className="text-2xl">Source for all your favorite Movies, TV shows and more...</p>
+            <h1 className="font-bold text-4xl text-white">Welcome to Movie-DB</h1>
+            <p className="text-2xl text-white">Source for all your favorite Movies, TV shows and more...</p>
           </div>
-          <div className="w-full flex rounded-full border border-seashell-500 focus-within:ring focus-within:ring-ebony-clay-600 bg-white">
+          <div className="w-full flex rounded-full border-2 border-black focus-within:ring focus-within:ring-ebony-clay-600 bg-white">
             <input className="w-full bg-transparent focus:outline-none indent-5 " type="text" />
-            <button className="btn btn-ghost rounded-full bg-persian-blue-700">
+            <button className="btn rounded-full bg-persian-blue-700">
               <span className="material-symbols-outlined">search</span>
               Search
             </button>
