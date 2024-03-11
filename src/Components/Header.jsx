@@ -1,6 +1,4 @@
 
-import { useEffect, useState } from "react";
-
 export default function Header(props) {
   console.log(props.movies)
   
