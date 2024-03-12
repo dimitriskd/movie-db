@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { format } from "date-fns";
 
 export default function MovieCard({ movies }) {
   const [movieCards, setMovieCards] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     createCard();
-  },[movies])
+  }, [movies]);
 
   function createCard() {
     const movieList = movies.map((movie) => {
@@ -21,10 +21,7 @@ export default function MovieCard({ movies }) {
         popularity: movie.popularity,
       };
     });
-    if(movieCards)
-      setMovieCards(movieList);
-    else
-      return movieList;
+    setMovieCards(movieList);
   }
   
   const fill = { "font-variation-settings": "'FILL' 1"};

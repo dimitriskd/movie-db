@@ -1,26 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import MovieCard from "../MovieCard";
-import { APIContainer } from "../../API/tmdb";
-import { useSpring, animated } from "@react-spring/web";
+import gsap from "gsap";
 
 export default function Trending() {
   const [trending, setTrending] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("day");
-  const springProps = useSpring({
-    from: { left: activeTab === "day" ? "0%" : "50%", width: "50%" },
-    to: { left: activeTab === "day" ? "0%" : "50%", width: "50%" },
-    config: { tension: 400, friction: 20 },
-  });
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
+  const toggleRef = useRef();
+  const containerRef = useRef();
+  
   useEffect(() => {
     const popularMovies = async () => {
       try {
-        const response = await APIContainer.fetch_trending(activeTab);
+        const response = await axios.get(`http://localhost:8000/trending?req=${activeTab}`)
         const data = response.data.results;
         setTrending(data);
       } catch (error) {
@@ -29,9 +22,19 @@ export default function Trending() {
         setLoading(false);
       }
     };
-    
     popularMovies();
   }, [activeTab]);
+  
+  useEffect(() => {
+    gsap.fromTo(containerRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1, ease: "sine.inOut" });
+  }, [trending]);
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    activeTab === "day"
+      ? gsap.to(toggleRef.current, { x: "100%", duration: 0.5 })
+      : gsap.to(toggleRef.current, { x: "0", duration: 0.5 });
+  };
 
   if (loading) {
     // Render a simple loading screen
@@ -53,26 +56,24 @@ export default function Trending() {
         </h2>
         <div className="flex text-center justify-between items-center border border-persian-blue-600 rounded-full ml-4 relative">
           <span
-            className="rounded-full select-none px-2 py-1 w-14 cursor-pointer z-[1]"
+            className="day rounded-full select-none px-2 py-1 w-14 cursor-pointer z-[1]"
             onClick={() => handleTabClick("day")}
           >
             Day
           </span>
           <span
-            className="rounded-full select-none px-2 py-1 w-14 cursor-pointer z-[1]"
+            className="week rounded-full select-none px-2 py-1 w-14 cursor-pointer z-[1]"
             onClick={() => handleTabClick("week")}
           >
             Week
           </span>
-          <animated.div
+          <div
+            ref={toggleRef}
             className="absolute h-8 bg-gradient-to-r w-14 from-ebony-clay-700 to-persian-blue-600 rounded-full"
-            style={{
-              ...springProps,
-            }}
-          ></animated.div>
+          ></div>
         </div>
       </div>
-      <div className="flex overflow-x-scroll">
+      <div ref={containerRef} className="flex overflow-x-scroll">
         <MovieCard movies={trending} />
       </div>
     </section>
