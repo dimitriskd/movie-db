@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./styles/App.css";
-import { APIContainer } from "./API/tmdb";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
 import Popular from "./Components/Movie Lists Components/Popular";
