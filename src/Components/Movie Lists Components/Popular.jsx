@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import MovieCard from "../MovieCard";
-import { APIContainer } from "../../API/tmdb";
 import gsap from "gsap";
 import axios from "axios";
 

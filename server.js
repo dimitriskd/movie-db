@@ -15,7 +15,7 @@ app.get('/popular', (req,res) => {
         url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1',
         headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${process.env.REACT_API_KEY}`
+            Authorization: `Bearer ${process.env.API_KEY}`
         }
     }
 
@@ -33,7 +33,7 @@ app.get('/trending', (req,res) => {
         url: `https://api.themoviedb.org/3/trending/movie/${reqParam}?language=en-US`,
         headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${process.env.REACT_API_KEY}`
+            Authorization: `Bearer ${process.env.API_KEY}`
         }
     }
 
