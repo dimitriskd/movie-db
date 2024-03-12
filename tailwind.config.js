@@ -56,7 +56,7 @@ export default {
           "secondary": "#5767d4",
           "accent": "#0084ff",
           "neutral": "#1e1c21",
-          "base-100": "#2b2b2b",
+          "base-100": "#121212",
           "info": "#0084cb",
           "success": "#00c17a",
           "warning": "#f47200",

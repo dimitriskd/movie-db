@@ -3,44 +3,24 @@ import "./styles/App.css";
 import { APIContainer } from "./API/tmdb";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
+import Popular from "./Components/Movie Lists Components/Popular";
+import Trending from "./Components/Movie Lists Components/Trending";
+import Footer from "./Components/Footer";
 
 export default function App() {
-  
-  const [popular, setPopular] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const popularMovies = async () => {
-      try {
-        const response = await APIContainer.fetch_popular();
-        const data = response.data.results;
-        setPopular(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    popularMovies();
-  },[])
-
-  if (loading) {
-    // Render a simple loading screen
-    return (
-      <div className="loading-screen">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
   return (
-    <div>
+    <section className="h-fit">
       <nav className="shadow-lg">
         <Navbar />
       </nav>
-      <main className="">
-        <Header movies={popular}/>
+      <main className="xl:container mx-auto">
+        <Header />
+        <Popular />
+        <Trending />
       </main>
-    </div>
+      <footer>
+        <Footer />
+      </footer>
+    </section>
   );
 }
