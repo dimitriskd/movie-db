@@ -63,7 +63,7 @@ export default {
           "error": "#ed494e",
         },
         light: {
-          "primary": "#a991f7",
+          "primary": "#252ad0",
           "secondary": "#f6d860",
           "accent": "#37cdbe",
           "neutral": "#3d4451",
