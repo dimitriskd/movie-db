@@ -23,12 +23,15 @@ export default function MovieCard({ movies }) {
     });
     setMovieCards(movieList);
   }
-  
-  const fill = { "font-variation-settings": "'FILL' 1"};
+
+  const fill = { "font-variation-settings": "'FILL' 1" };
 
   return movieCards.map(({ id, poster_img, title, release_date, rating }) => {
     return (
-      <div key={id} className="min-w-fit min-h-fit text-white mr-4 my-2 px-2 overflow-hidden relative md:static">
+      <div
+        key={id}
+        className="min-w-fit min-h-fit text-white mr-4 my-2 px-2 overflow-hidden relative md:static"
+      >
         <a href="#">
           <div className="md:w-48 w-36 relative hover:scale-105 transition-all duration-150 ease-in-out py-2">
             <img src={poster_img} className="rounded-lg" alt={title} />
@@ -68,19 +71,25 @@ export default function MovieCard({ movies }) {
               </li>
               <li>
                 <a className="text-black dark:text-white p-1 py-2">
-                  <span className="material-symbols-outlined">bookmark_add</span>
+                  <span className="material-symbols-outlined">
+                    bookmark_add
+                  </span>
                   <p>Watchlist</p>
                 </a>
               </li>
               <li>
                 <a className="text-black dark:text-white p-1 py-2">
-                  <span className="material-symbols-outlined text-red-600">favorite</span>
+                  <span className="material-symbols-outlined text-red-600">
+                    favorite
+                  </span>
                   <p>Favorite</p>
                 </a>
               </li>
               <li>
                 <a className="text-black dark:text-white p-1 py-2">
-                  <span className="material-symbols-outlined text-yellow-400">star</span>
+                  <span className="material-symbols-outlined text-yellow-400">
+                    star
+                  </span>
                   <p>Add Rating</p>
                 </a>
               </li>

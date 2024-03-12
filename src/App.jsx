@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./styles/App.css";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
@@ -12,11 +11,13 @@ export default function App() {
       <nav className="shadow-lg">
         <Navbar />
       </nav>
+
       <main className="xl:container mx-auto">
         <Header />
         <Popular />
         <Trending />
       </main>
+
       <footer>
         <Footer />
       </footer>

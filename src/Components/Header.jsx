@@ -1,7 +1,6 @@
 import getBg from "../API/bg";
 
 export default function Header() {
-
   const style = {
     backgroundImage: `url(${getBg()})`,
     backgroundSize: "cover",
@@ -9,7 +8,10 @@ export default function Header() {
   };
 
   return (
-    <section style={style} className="xl:container hidden mx-auto md:flex justify-between">
+    <section
+      style={style}
+      className="xl:container hidden mx-auto md:flex justify-between"
+    >
       <div className="w-full bg-persian-blue-700 bg-opacity-55">
         <div className="xl:container mx-auto px-10 py-10 md:w-2/3">
           <div className="md:py-10 py-6">

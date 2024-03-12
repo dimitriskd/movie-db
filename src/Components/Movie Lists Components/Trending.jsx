@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Loading from "../Loading";
 import axios from "axios";
 import MovieCard from "../MovieCard";
 import gsap from "gsap";
@@ -9,11 +10,13 @@ export default function Trending() {
   const [activeTab, setActiveTab] = useState("day");
   const toggleRef = useRef();
   const containerRef = useRef();
-  
+
   useEffect(() => {
     const popularMovies = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/trending?req=${activeTab}`)
+        const response = await axios.get(
+          `http://localhost:8000/trending?req=${activeTab}`
+        );
         const data = response.data.results;
         setTrending(data);
       } catch (error) {
@@ -24,9 +27,13 @@ export default function Trending() {
     };
     popularMovies();
   }, [activeTab]);
-  
+
   useEffect(() => {
-    gsap.fromTo(containerRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1, ease: "sine.inOut" });
+    gsap.fromTo(
+      containerRef.current,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 1, ease: "sine.inOut" }
+    );
   }, [trending]);
 
   const handleTabClick = (tab) => {
@@ -38,11 +45,7 @@ export default function Trending() {
 
   if (loading) {
     // Render a simple loading screen
-    return (
-      <div className="loading-screen">
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

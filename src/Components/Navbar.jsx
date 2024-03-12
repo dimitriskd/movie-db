@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import logo from "../assets/logo/logo-line/svg/logo-no-background.svg";
 import logo_dark from "../assets/logo/logo-dark/svg/logo-no-background.svg";
-import { themeChange } from 'theme-change'
+import { themeChange } from "theme-change";
 
 export default function Navbar() {
   const [mobileSearch, setMobileSearch] = useState(false);
@@ -15,7 +15,7 @@ export default function Navbar() {
 
   useEffect(() => {
     themeChange(false);
-    
+
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 768);
     };
