@@ -28,7 +28,6 @@ export default function Popular() {
   }, [popular]);
 
   if (loading) {
-    // Render a simple loading screen
     return (
       <div className="loading-screen">
         <p>Loading...</p>
