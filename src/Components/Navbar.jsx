@@ -47,7 +47,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg border border-gray-500 bg-base-100 rounded-box w-52 "
           >
             <li>
               <a>Homepage</a>
@@ -71,7 +71,7 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <a href="">
             <img
               className="hidden dark:block h-6 md:h-8"
@@ -82,7 +82,7 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-      <div className="hidden md:block navbar-center">
+      <div className="hidden lg:block navbar-center">
         <a href="">
           <img
             className="hidden dark:block h-6 md:h-8"

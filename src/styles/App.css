@@ -15,8 +15,14 @@ html {
   /* or any other variables/style */
 }
 [data-theme='dark'] {
-  --my-color: #000;
+  --my-color: #121212;
 }
 [data-theme='light'] {
   --my-color: #ffffff;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
 }
