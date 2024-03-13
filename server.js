@@ -29,7 +29,8 @@ function createAxiosConfig(url, params) {
 
 app.get('/popular', async (req, res, next) => {
     try {
-        const config = createAxiosConfig('https://api.themoviedb.org/3/movie/popular', {
+        const reqParam = req.query.req || "movie";
+        const config = createAxiosConfig(`https://api.themoviedb.org/3/${reqParam}/popular`, {
             language: 'en-US',
             page: 1
         });
@@ -43,7 +44,7 @@ app.get('/popular', async (req, res, next) => {
 app.get('/trending', async (req, res, next) => {
     try {
         const reqParam = req.query.req || 'day';
-        const url = `https://api.themoviedb.org/3/trending/movie/${reqParam}`;
+        const url = `https://api.themoviedb.org/3/trending/all/${reqParam}`;
         const config = createAxiosConfig(url, { language: 'en-US' });
         const response = await axios.request(config);
         res.json(response.data);
@@ -55,3 +56,17 @@ app.get('/trending', async (req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+// top rated movies
+// const options = {
+//     method: 'GET',
+//     headers: {
+//       accept: 'application/json',
+//       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MjU1ZGFhZTcwM2ZjYWZhMTcxZTQ5Y2MxNGY3MTBkZSIsInN1YiI6IjY1ZTc1MDNjY2VkZTY5MDE4NWJmMGVmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AAVvp7arcDIaouiQJISn0K3LAgmM-KTqW9aYkpDuCL4'
+//     }
+//   };
+  
+//   fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=1000', options)
+//     .then(response => response.json())
+//     .then(response => console.log(response))
+//     .catch(err => console.error(err));

@@ -17,6 +17,7 @@ html {
 }
 [data-theme='dark'] {
   --my-color: #121212;
+  color: white;
 }
 [data-theme='light'] {
   --my-color: #ffffff;

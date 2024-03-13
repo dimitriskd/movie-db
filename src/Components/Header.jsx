@@ -12,7 +12,7 @@ export default function Header() {
       style={style}
       className="xl:container hidden mx-auto md:flex justify-between"
     >
-      <div className="w-full bg-persian-blue-700 bg-opacity-55">
+      <div className="w-full bg-black bg-opacity-35">
         <div className="xl:container mx-auto px-10 py-10 md:w-2/3">
           <div className="md:py-10 py-6">
             <h1 className="font-bold text-4xl text-white">

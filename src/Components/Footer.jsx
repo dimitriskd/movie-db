@@ -25,13 +25,13 @@ export default function Footer() {
       <nav>
         <div className="grid grid-flow-col gap-4">
           <a>
-            <i class="fa-brands fa-github fa-2xl"></i>
+            <i className="fa-brands fa-github fa-2xl"></i>
           </a>
           <a>
-            <i class="fa-brands fa-youtube fa-2xl"></i>
+            <i className="fa-brands fa-youtube fa-2xl"></i>
           </a>
           <a>
-            <i class="fa-brands fa-facebook fa-2xl"></i>
+            <i className="fa-brands fa-facebook fa-2xl"></i>
           </a>
         </div>
       </nav>

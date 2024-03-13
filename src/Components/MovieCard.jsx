@@ -11,11 +11,11 @@ export default function MovieCard({ movies }) {
   function createCard() {
     const movieList = movies.map((movie) => {
       const rating = Number(movie.vote_average.toFixed(1));
-      const formattedDate = format(movie.release_date, "MMM dd, yyyy");
+      const formattedDate = format(movie.release_date || movie.first_air_date, "MMM dd, yyyy");
       return {
         id: movie.id,
         poster_img: `http://image.tmdb.org/t/p/w500${movie.poster_path}`,
-        title: movie.title,
+        title: movie.title || movie.original_name,
         rating: rating,
         release_date: formattedDate,
         popularity: movie.popularity,
