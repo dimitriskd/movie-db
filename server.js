@@ -52,21 +52,21 @@ app.get('/trending', async (req, res, next) => {
         next(error);
     }
 });
+app.get('/top-rated', async (req, res, next) => {
+    try {
+        const url = `https://api.themoviedb.org/3/discover/movie`;
+        const config = createAxiosConfig(url, { 
+            language: 'en-US',
+            "sort_by": "vote_average.desc",
+            "vote_count.gte": "1000"
+        });
+        const response = await axios.request(config);
+        res.json(response.data);
+    } catch (error) {
+        next(error);
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
-// top rated movies
-// const options = {
-//     method: 'GET',
-//     headers: {
-//       accept: 'application/json',
-//       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MjU1ZGFhZTcwM2ZjYWZhMTcxZTQ5Y2MxNGY3MTBkZSIsInN1YiI6IjY1ZTc1MDNjY2VkZTY5MDE4NWJmMGVmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AAVvp7arcDIaouiQJISn0K3LAgmM-KTqW9aYkpDuCL4'
-//     }
-//   };
-  
-//   fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=1000', options)
-//     .then(response => response.json())
-//     .then(response => console.log(response))
-//     .catch(err => console.error(err));

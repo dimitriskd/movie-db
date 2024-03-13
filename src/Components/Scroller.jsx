@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import Loading from "../Loading";
-import MovieCard from "../MovieCard";
+import Loading from "./Loading";
+import MovieCard from "./MovieCard";
 import gsap from "gsap";
 import axios from "axios";
 
@@ -32,12 +32,14 @@ export default function Scroller(props) {
   }, [activeTab]);
 
   useEffect(() => {
-    gsap.fromTo(
-      containerRef.current,
-      { autoAlpha: 0 },
-      { autoAlpha: 1, duration: 1, ease: "sine.inOut" }
-    );
-  }, [activeTab,loading]);
+    if (list) {
+      gsap.fromTo(
+        containerRef.current,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 1, ease: "sine.inOut" }
+      );
+    }
+  }, [list]);
 
   const handleTabClick = (tab) => {
     const targetTab = document.querySelector(`.${tab}`);
@@ -66,7 +68,7 @@ export default function Scroller(props) {
           </span>
           {props.category.header.title}
         </h2>
-        <div className="flex text-center justify-between items-center border border-persian-blue-600 rounded-full ml-4 relative">
+        {Object.keys(props.category.tabs).length > 0 && <div className="flex text-center justify-between items-center border border-persian-blue-600 rounded-full ml-4 relative">
           {Object.entries(props.category.tabs).map(([key, value]) => (
             <span
               key={key}
@@ -80,7 +82,7 @@ export default function Scroller(props) {
             ref={toggleRef}
             className="absolute h-8 bg-gradient-to-r w-24 from-ebony-clay-700 to-persian-blue-600 rounded-full"
           ></div>
-        </div>
+        </div>}
       </div>
       <div ref={containerRef} className="flex overflow-x-scroll">
         <MovieCard movies={list} />

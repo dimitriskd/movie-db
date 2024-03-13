@@ -1,43 +1,42 @@
 import "./styles/App.css";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
-import Popular from "./Components/Movie Lists Components/Popular";
-import Trending from "./Components/Movie Lists Components/Trending";
 import Footer from "./Components/Footer";
-import Scroller from "./Components/Movie Lists Components/Scroller";
+import Scroller from "./Components/Scroller";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [trending, setTrending] = useState({
+  const generateCategoryState = (url, tabs, title, icon, iconColor) => ({
     config: {
       method: "GET",
-      url: `http://localhost:8000/trending`,
+      url: `http://localhost:8000/${url}`,
     },
-    tabs: {
+    tabs: tabs,
+    header: {
+      title: title,
+      icon: icon,
+      iconColor: iconColor,
+    },
+  });
+
+  const [trending, setTrending] = useState(
+    generateCategoryState("trending", {
       day: "Today",
       week: "This Week",
-    },
-    header: {
-      title: "Trending",
-      icon: "trending_up",
-      iconColor: "text-persian-blue-700",
-    },
-  });
-  const [popular, setPopular] = useState({
-    config: {
-      method: "GET",
-      url: `http://localhost:8000/popular`,
-    },
-    tabs: {
+    }, "Trending", "trending_up", "text-persian-blue-700")
+  );
+
+  const [popular, setPopular] = useState(
+    generateCategoryState("popular", {
       movie: "Movies",
       tv: "TV Shows",
-    },
-    header: {
-      title: "Popular",
-      icon: "stars",
-      iconColor: "text-yellow-400",
-    },
-  });
+    }, "Popular", "stars", "text-yellow-400")
+  );
+
+  const [topRated, setTopRated] = useState(
+    generateCategoryState("top-rated", {}, "Top Rated", "diamond", "text-blue-400")
+  );
+
 
   return (
     <section className="h-fit">
@@ -49,6 +48,7 @@ export default function App() {
         <Header />
         <Scroller category={trending} />
         <Scroller category={popular} />
+        <Scroller category={topRated} />
       </main>
 
       <footer>
