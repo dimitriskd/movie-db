@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node index.js\"",
-    "build": "vite build && cp -r dist public",
+    "dev": "vite",
+    "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "start": "nodemon ./api/index.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.0",
