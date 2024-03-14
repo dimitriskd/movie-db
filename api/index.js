@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -66,6 +66,8 @@ app.get('/top-rated', async (req, res, next) => {
         next(error);
     }
 });
+
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
