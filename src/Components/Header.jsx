@@ -1,4 +1,4 @@
-import getBg from "../../api/bg";
+import getBg from "../api/bg";
 
 export default function Header() {
   const style = {
