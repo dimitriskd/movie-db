@@ -9,7 +9,7 @@ export default function App() {
   const generateCategoryState = (url, tabs, title, icon, iconColor) => ({
     config: {
       method: "GET",
-      url: `3.75.158.163:10000/${url}`,
+      url: `http://localhost:3000/${url}`,
     },
     tabs: tabs,
     header: {

@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
+// Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
@@ -67,10 +68,11 @@ app.get('/top-rated', async (req, res, next) => {
     }
 });
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+export default app;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
-module.exports = app; // Export the Express app
+// Start the server
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
