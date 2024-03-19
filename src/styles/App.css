@@ -11,6 +11,10 @@ html {
   margin: 0;
 }
 
+#root {
+  min-height: 100vh;
+}
+
 :root {
   --my-color: #fff;
   /* or any other variables/style */

@@ -1,8 +1,12 @@
+import { useMemo } from "react";
 import getBg from "../api/bg";
 
-export default function Header() {
+export default function Header(props) {
+
+  const bgUrl = useMemo(() => getBg(), []);
+
   const style = {
-    backgroundImage: `url(${getBg()})`,
+    backgroundImage: `url(${bgUrl})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
@@ -22,17 +26,18 @@ export default function Header() {
               Source for all your favorite Movies, TV shows and more...
             </p>
           </div>
-          <div className="w-full flex rounded-full border-2 border-black focus-within:ring focus-within:ring-ebony-clay-600 bg-white bg-opacity-80">
+          <form action="#" onSubmit={props.handleFlag} className="w-full flex rounded-full border-2 border-black focus-within:ring focus-within:ring-ebony-clay-600 bg-white bg-opacity-80">
             <input
               className="w-full bg-transparent focus:outline-none indent-5 text-black"
               placeholder="Search for Movies, TV shows and more..."
               type="text"
+              onChange={(e) => props.handleInputChange(e)}
             />
             <button className="btn rounded-full border border-gray-400 text-white bg-persian-blue-700 ">
               <span className="material-symbols-outlined">search</span>
               Search
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
