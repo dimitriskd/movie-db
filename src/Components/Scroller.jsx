@@ -60,7 +60,7 @@ export default function Scroller(props) {
   return (
     <section className="py-5">
       <div className="flex items-center">
-        <h2 className="text-3xl pl-2 font-semibold flex items-center">
+        <h2 className="text-3xl pl-1 font-semibold flex items-center">
           <span
             className={`material-symbols-outlined mr-2 ${props.category.header.iconColor}`}
           >
