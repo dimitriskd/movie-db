@@ -13,9 +13,9 @@ export default function App() {
         <Navbar />
       </nav>
 
-      <main className="xl:container mx-auto">
-        {/* <Home /> */}
-        <SearchResults />
+      <main>
+        <Home />
+        {/* <SearchResults /> */}
       </main>
 
       <footer className="mt-auto">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Header from "../Components/Header";
 import Scroller from "../Components/Scroller";
+import Trailers from "../Components/Trailers";
 
 export default function Home() {
   const generateCategoryState = (url, tabs, title, icon, iconColor) => ({
@@ -80,6 +81,7 @@ export default function Home() {
         {!flag ? <section>
           <Header query={searchQuery} handleInputChange={handleInputChange} handleFlag={handleFlag} />
           <Scroller category={trending} />
+          <Trailers />
           <Scroller category={popular} />
           <Scroller category={topRated} />
         </section>
