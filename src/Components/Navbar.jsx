@@ -3,7 +3,7 @@ import logo from "../assets/logo/logo-line/svg/logo-no-background.svg";
 import logo_dark from "../assets/logo/logo-dark/svg/logo-no-background.svg";
 import { themeChange } from "theme-change";
 
-export default function Navbar() {
+export default function Navbar({loggedIn}) {
   const [mobileSearch, setMobileSearch] = useState(false);
   const buttonRef = useRef(null);
 
@@ -20,10 +20,8 @@ export default function Navbar() {
       setIsSmallScreen(window.innerWidth <= 768);
     };
 
-    // Attach the event listener
     window.addEventListener("resize", handleResize);
 
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -47,7 +45,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg border border-gray-500 bg-base-100 rounded-box w-52 "
+            className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-lg border border-gray-500 bg-base-100 rounded-box w-52"
           >
             <li>
               <a>Homepage</a>
@@ -133,7 +131,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-        <div className="dropdown dropdown-end">
+        {loggedIn ? <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
             role="button"
@@ -164,6 +162,11 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
+        :
+        <button className="btn text-white bg-primary hover:bg-neutral" alt="Log In">
+          Log In
+        </button>
+        }
       </div>
     </div>
   );

@@ -6,11 +6,21 @@ import Home from "./Routes/Home";
 import SearchResults from "./Routes/SearchResults";
 
 export default function App() {
-  
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  async function logIn(){
+    try {
+      const response = await axios.get("http://localhost:3000/login");
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <section className="h-screen flex flex-col">
       <nav className="shadow-lg">
-        <Navbar />
+        <Navbar loggedIn={loggedIn} />
       </nav>
 
       <main>

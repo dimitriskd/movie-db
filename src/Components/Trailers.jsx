@@ -74,7 +74,8 @@ export default function Trailers() {
                   >
                     <img
                       src={`http://image.tmdb.org/t/p/w500${trailer.movie.backdrop_path}`}
-                      alt=""
+                      className="rounded-md"
+                      alt={trailer.movie.title}
                     />
                     <span className="material-symbols-outlined filled absolute text-7xl text-white play-animation">
                       play_arrow

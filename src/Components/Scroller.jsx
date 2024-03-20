@@ -58,7 +58,7 @@ export default function Scroller(props) {
   }
 
   return (
-    <section className="py-5">
+    <section className="md:py-5 pt-2">
       <div className="flex items-center">
         <h2 className="text-3xl pl-1 font-semibold flex items-center">
           <span
