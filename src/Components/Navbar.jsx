@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import logo from "../assets/logo/logo-line/svg/logo-no-background.svg";
 import logo_dark from "../assets/logo/logo-dark/svg/logo-no-background.svg";
 import { themeChange } from "theme-change";
+import axios from "axios";
+import e from "cors";
 
-export default function Navbar({loggedIn}) {
+export default function Navbar(props) {
   const [mobileSearch, setMobileSearch] = useState(false);
   const buttonRef = useRef(null);
 
@@ -26,6 +28,17 @@ export default function Navbar({loggedIn}) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  async function logout() {
+    try {
+      const response = await axios.get("http://localhost:3000/delete-session",{
+        withCredentials: true
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="navbar bg-base-100 container py-3 mx-auto md:flex">
@@ -131,42 +144,66 @@ export default function Navbar({loggedIn}) {
             </button>
           </div>
         </div>
-        {loggedIn ? <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
+        {props.loggedIn ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={`http://image.tmdb.org/t/p/w200${props.account.avatar.tmdb.avatar_path}`}
+                />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content  bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="block py-2 my-1">
+                  {props.account.username}
+                  <p className="text-seashell-400 mt-1">View Profile</p>
+                </a>
+              </li>
+              <li className="border-t border-t-seashell-400">
+                <a className="mt-1 py-1" href="">
+                  Discussions
+                </a>
+              </li>
+              <li>
+                <a className="mt-1 py-1" href="">
+                  Lists
+                </a>
+              </li>
+              <li>
+                <a className="mt-1 py-1" href="">
+                  Ratings
+                </a>
+              </li>
+              <li>
+                <a className="mt-1 py-1" href="">
+                  Watchlist
+                </a>
+              </li>
+              <li>
+                <a className="mt-1 py-1" onClick={logout}>
+                  Logout
+                </a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content  bg-base-100 rounded-box w-52"
+        ) : (
+          <button
+            onClick={props.logIn}
+            className="btn text-white bg-primary hover:bg-neutral"
+            alt="Log In"
           >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
-        :
-        <button className="btn text-white bg-primary hover:bg-neutral" alt="Log In">
-          Log In
-        </button>
-        }
+            Log In
+          </button>
+        )}
       </div>
     </div>
   );
